@@ -7,7 +7,7 @@ Playground repositorty for messing about
 ## FastAPI Python Services
 Wanted to give FastAPI a try as have previously used Flask
 
-### Starting the applications
+### Run Locally
 Install dependencies
 ```
 make init
@@ -26,4 +26,18 @@ make lint
 Run Tests
 ```
 make test
+```
+
+### Build and Run in Docker
+
+```
+make docker-build docker-run
+```
+
+Will start the service at localhost:80.
+
+To tear down and remove container
+
+```
+make docker-stop
 ```
