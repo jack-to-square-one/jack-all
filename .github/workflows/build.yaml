@@ -1,0 +1,44 @@
+name: build and test basic api service
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: make init
+
+      - name: Lint project
+        run: make lint-check
+
+      - name: Test with Pytest
+        run: make test
+
+      - name: Docker build
+        run: make docker-build
+
+      - name: Spin up service
+        run: make docker-start
+
+      - name: Verify service deployment
+        run: make verify-service
+
+      - name: Stop service and clean up
+        run: make docker-stop
+
+
+
+

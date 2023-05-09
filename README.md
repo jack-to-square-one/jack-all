@@ -2,9 +2,9 @@
 Playground repositorty for messing about
 
 ## Pre-requisites
-* Python 3.11.3
+* Python 3.11.3+
 
-## FastAPI Python Services
+## FastAPI Python Service
 Wanted to give FastAPI a try as have previously used Flask
 
 ### Run Locally
@@ -31,13 +31,28 @@ make test
 ### Build and Run in Docker
 
 ```
-make docker-build docker-run
+make docker-build docker-start
 ```
 
-Will start the service at localhost:80.
+Will start the service at localhost:80. It will also wait for the container to become healthy.
+
+Verify you can access the api with
+
+```
+make verify_service
+```
 
 To tear down and remove container
 
 ```
 make docker-stop
 ```
+
+### CI/CD
+Currently implemented with Github actions. Includes testing, building and deploying the service in Docker.
+
+Waiting for the container to become healthy relies on [jordyv/wait-for-healthy-container](https://github.com/jordyv/wait-for-healthy-container), which is pulled in as a project submodule.
+
+The workflow doesn't make use of some avaible github actions, instead I've chosen to use the workflow to call the project Makefile. I prefer to be able to run as much of my cicd pipeline locally as possible, and local execution of github actions requires additional set-up.
+
+Linting is done with Black and the build will fail if there are any linting errors.
