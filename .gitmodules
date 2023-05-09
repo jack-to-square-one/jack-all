@@ -1,0 +1,3 @@
+[submodule "wait-for-healthy-container"]
+	path = wait-for-healthy-container
+	url = https://github.com/jordyv/wait-for-healthy-container
