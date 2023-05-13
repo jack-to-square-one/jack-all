@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./basic_api_service/main.py /code/main.py
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl localhost:80
+HEALTHCHECK --interval=5s --timeout=3s CMD curl localhost:5000
 
-CMD ["uvicorn", "main:basic_api_service", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:basic_api_service", "--host", "0.0.0.0", "--port", "5000"]

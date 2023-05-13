@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: basic-api-service-service
+spec:
+  selector:
+    app: basicapiservice
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 5000
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: basic-api-service-deployment
+  labels:
+    app: basicapiservice
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basicapiservice
+  template:
+    metadata:
+      labels:
+        app: basicapiservice
+    spec:
+      containers:
+      - name: basic-api-service
+        image: basicapiservice:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
