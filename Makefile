@@ -3,7 +3,7 @@ service_name := basic_api_service
 service_tag := basicapiservice
 service_dir := basic_api_service
 
-all: init lint test docker-build docker-start verify-service
+all: init lint test docker-build docker-start docker-verify-service
 
 docker-build:
 	docker build --tag ${service_tag} .
@@ -31,6 +31,7 @@ k8s-cluster-start:
 
 k8s-deploy:
 	kubectl apply -f basic-api-deployment.yaml
+	kubectl rollout status deployment/basic-api-service-deployment --timeout=10s
 
 k8s-delete:
 	kubectl delete -f basic-api-deployment.yaml

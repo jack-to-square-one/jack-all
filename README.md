@@ -51,10 +51,10 @@ To tear down and remove container
 make docker-stop
 ```
 
-### Run in K8s Cluster
+### Deploy to local minikube cluster
 Start cluster and set it to look at docker images
 ```
-make cluster-start
+k8s-cluster-start
 ```
 
 Build the docker image
@@ -87,6 +87,3 @@ Waiting for the container to become healthy relies on [jordyv/wait-for-healthy-c
 The workflow doesn't make use of some avaible github actions, instead I've chosen to use the workflow to call the project Makefile. I prefer to be able to run as much of my cicd pipeline locally as possible, and local execution of github actions requires additional set-up.
 
 Linting is done with Black and the build will fail if there are any linting errors.
-
-### Deploy to local minikube cluster
-[coming soon]

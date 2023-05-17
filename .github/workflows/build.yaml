@@ -1,6 +1,6 @@
 name: build and test basic api service
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:

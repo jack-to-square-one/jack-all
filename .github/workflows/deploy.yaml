@@ -1,0 +1,36 @@
+name: Deploy basic api service to k8s cluster
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+        with:
+          driver: docker
+
+      - name: Build the image
+        run: |
+          export SHELL=/bin/bash
+          eval $(minikube -p minikube docker-env)
+          make docker-build
+          echo -n "verifying images:"
+          docker images
+
+      - name: Deploy basic api service
+        run: make k8s-deploy
+
+      - name: Verify service deployment
+        run: make k8s-verify-service
+
+      - name: Stop service and clean up
+        run: make k8s-delete
+
+
