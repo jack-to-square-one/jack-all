@@ -19,10 +19,7 @@ docker-stop:
 init:
 	python -m pip install --upgrade pip
 	cd ${service_dir} && python -m pip install -r requirements.txt
-	python -m pip install black
-	python -m pip install pytest
-	python -m pip install httpx
-	python -m pip install freezegun
+	cd ${service_dir} && python -m pip install -r requirements-dev.txt
 	chmod +x wait-for-healthy-container/wait-for-healthy-container.sh
 
 lint:
