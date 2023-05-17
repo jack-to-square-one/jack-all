@@ -16,7 +16,7 @@ async def root():
 
 @basic_api_service.get("/time")
 async def get_time_and_date(timezone: str = DEFAULT_TIMEZONE):
-    return {"Time in " + timezone: time_and_date(timezone)}
+    return {f"Time in {timezone}": time_and_date(timezone)}
 
 
 def time_and_date(timezone: str):
