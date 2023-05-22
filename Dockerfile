@@ -1,6 +1,6 @@
-#
+FROM python:3.11.3-slim
 
-FROM python:3.11.3
+RUN apt-get -y update && apt-get -y install curl
 
 WORKDIR /code
 
