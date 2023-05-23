@@ -1,6 +1,12 @@
 name: Deploy basic api service to k8s cluster
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
