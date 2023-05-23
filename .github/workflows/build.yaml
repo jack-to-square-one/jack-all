@@ -1,6 +1,6 @@
 name: build and test basic api service
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
         run: make docker-start
 
       - name: Verify service deployment
-        run: make verify-service
+        run: make docker-verify-service
 
       - name: Stop service and clean up
         run: make docker-stop
